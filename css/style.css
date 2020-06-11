@@ -1,0 +1,15 @@
+.textInput{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+button:hover{
+    border-style: solid 10px;
+    border-color: yellow;
+}
+
+.sectionPadding{
+    padding-left: 40rem;
+    padding-right: 40rem;
+}
