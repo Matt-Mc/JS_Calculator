@@ -6,9 +6,12 @@ const operators = document.querySelectorAll("#operator")
 const equalButton = document.querySelector("#equals")
 const PosNeg = document.querySelector("#posNeg")
 const prevField = document.querySelector("#prevField")
+const dot = document.querySelector("#dot")
 
 numFlag1 = false;
 numFlag2 = false;
+negFlag = false;
+dotFlag = false;
 operator = ""
 num1 = 0
 num2 = 0
@@ -21,6 +24,8 @@ function addOperator(e){
     if(input.innerText == ""){
         return
     }
+    negFlag = false
+    dotFlag = false
 
 
     if(numFlag1 == true && numFlag2 == false){
@@ -81,6 +86,13 @@ function addValue(e){
 }
 
 function equals(){
+
+    if(input.innerText == ""){
+        return
+    }
+    negFlag = false
+    dotFlag = false
+
     num2 = parseInt(input.innerText)
 
     if(operator == "÷"){
@@ -130,6 +142,9 @@ function subtract(num1,num2){
     return num1 - num2
 }
 function divide(num1,num2){
+    if(num2 == 0){
+        return "Nice Try"
+    }
     return num1/num2
 }
 
@@ -140,7 +155,17 @@ function divide(num1,num2){
 
 
 
-function addNegative(){
+function addNegative(e){
+    if(negFlag == false){
+        empty = ""
+        tempr = input.innerText 
+        tempr = empty.concat("-", tempr);
+        input.innerText = ""
+        input.innerText = tempr
+        negFlag = true
+    }else{
+        return
+    }
 
 }
 
@@ -167,6 +192,9 @@ backspace.addEventListener('click', (e) => {
      num2 = 0
      numFlag1 = false
      numFlag2 = false
+     negFlag = false
+     dotFlag = false
+
  })
  
  
@@ -182,3 +210,17 @@ backspace.addEventListener('click', (e) => {
          addOperator(e)
      });
  });
+
+ dot.addEventListener('click',(e) =>{
+    if(dotFlag == false){
+        empty = ""
+        tempr = input.innerText 
+        tempr = empty.concat(tempr, ".");
+        input.innerText = ""
+        input.innerText = tempr
+        dotFlag = true
+    }else{
+        return
+    }
+
+ })
